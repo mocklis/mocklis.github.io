@@ -78,7 +78,7 @@
 							<div class="col-md-10 offset-md-1 bg-light rounded p-3">
 								<p><strong>Mocking</strong> is the art of creating specialised implementations ("Mocks") of a system's
 									dependencies,<br />
-									letting us write unit tests to verify that it 'does the right things' when interacted with in
+									These let us write unit tests to verify that the system 'does the right things' when interacted with in
 									different ways.</p>
 
 								<p>To streamline the creation of these Mocks we use a <strong>Mocking framework.</strong> These
@@ -157,7 +157,7 @@
 							<div class="col-md-10 offset-md-1 bg-light rounded p-3">
 								<p><strong>You</strong> create an empty class implementing the interface(s) you need, and add a
 									<samp>[MocklisClass]</samp> attribute.<br />
-									The <strong class="text-success">Mocklis Code Generator</strong> implements the interfaces explicitly
+									The <strong class="text-success">Mocklis Mock Generator</strong> implements the interfaces explicitly
 									and provides 'Mocks' for adding behaviour.</p>
 								<pre style="font-size: 0.8rem" class="p-0 mt-0">[MocklisClass]
 public class MockService : IMyService, IDisposable
@@ -165,13 +165,13 @@ public class MockService : IMyService, IDisposable
 <span class="text-success">    public MockService()
     {
         ClientId = new PropertyMock<int>(this, "MockService", "IMyService", "ClientId", "ClientId");
-        Echo = new FuncMethodMock<(string text, TimeSpan timeout), string>(this, "MockService", "IMyService", "Echo", "Echo");
+        Echo = new FuncMethodMock&lt;(string text, TimeSpan timeout), string&gt;(this, "MockService", "IMyService", "Echo", "Echo");
         Dispose = new ActionMethodMock(this, "MockService", "IDisposable", "Dispose", "Dispose");
     }
 
     public PropertyMock<int> ClientId { get; }
     int IMyService.ClientId => ClientId.Value;
-    public FuncMethodMock<(string text, TimeSpan timeout), string> Echo { get; }
+    public FuncMethodMock&lt;(string text, TimeSpan timeout), string&gt; Echo { get; }
     string IMyService.Echo(string text, TimeSpan timeout) => Echo.Call((text, timeout));
     public ActionMethodMock Dispose { get; }
     void IDisposable.Dispose() => Dispose.Call();</span>
@@ -275,7 +275,7 @@ var systemUnderTest = new MySystem(mockService);</pre>
 									after all...
 
 									<div class="text-right">
-										<h4 class="text-success" />Happy Testing!</h4>
+										<h4 class="text-success">Happy Testing!</h4>
 										<img src="mocksign.png" />
 									</div>
 

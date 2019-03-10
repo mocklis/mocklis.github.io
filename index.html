@@ -1,10 +1,315 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Mocklis</title>
-  </head>
-  <body>
 
-  </body>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="icon" type="image/x-icon" href="/mocklis.ico" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<title>Mocklis</title>
+</head>
+
+<body>
+	<div class="container pt-3">
+		<div class="alert alert-info alert-dismissable" role="alert">
+			<strong>Please note:</strong> Mocklis is still in alpha. Things can - and almost certainly will - change.
+			<button type="button" class="close" aria-label="Close" data-dismiss="alert">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+
+		<div class="row mb-3">
+			<div class="col-sm">
+				<a href="https://www.nuget.org/profiles/mocklis" class="btn btn-success p-3 w-100" role="button"
+					target="_blank">
+					Get the NuGet Packages&nbsp;<img src="nuget_64_mono_w.png" />
+				</a>
+			</div>
+
+			<div class="col-sm mt-3 mt-sm-0">
+				<a href="/docs/index.html" class="btn btn-success p-3 w-100 m-0" role="button" target="_blank">
+					Read the&nbsp;<img src="noun_Book_64.png" />&nbsp;Documentation
+				</a>
+			</div>
+
+			<div class="col-sm mt-3 mt-sm-0">
+				<a href="https://github.com/mocklis/mocklis" class="btn btn-success p-3 w-100 m-0" role="button"
+					target="_blank">
+					<img src="GitHub-Mark-Light-64px.png" />&nbsp;Get Involved on GitHub
+				</a>
+			</div>
+		</div>
+
+
+
+		<div class="bg-secondary rounded">
+			<div class="row text-center text-white mb-3">
+				<div class="col-md-1 pt-5">
+					<a href="#tour" role="button" data-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="sr-only">Previous</span>
+					</a>
+				</div>
+				<div class="col-md-10">
+					<img src="mocklis128.png" /><br />
+					<em>Mocklis - an interface mocking solution for C#</em>
+				</div>
+				<div class="col-md-1 pt-5">
+					<a href="#tour" role="button" data-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					</a>
+				</div>
+			</div>
+
+			<div id="tour" class="carousel slide" data-ride="true" data-interval="15000">
+				<ol class="carousel-indicators">
+					<li data-target="#tour" data-slide-to="0" class="active"></li>
+					<li data-target="#tour" data-slide-to="1"></li>
+					<li data-target="#tour" data-slide-to="2"></li>
+					<li data-target="#tour" data-slide-to="3"></li>
+					<li data-target="#tour" data-slide-to="4"></li>
+					<li data-target="#tour" data-slide-to="5"></li>
+				</ol>
+				<div class="carousel-inner pb-5">
+					<div class="carousel-item active">
+						<div class="row">
+							<div class="col-md-10 offset-md-1 bg-light rounded p-3">
+								<p><strong>Mocking</strong> is the art of creating specialised implementations ("Mocks") of a system's
+									dependencies,<br />
+									letting us write unit tests to verify that it 'does the right things' when interacted with in
+									different ways.</p>
+
+								<p>To streamline the creation of these Mocks we use a <strong>Mocking framework.</strong> These
+									traditionally generate Mocks at run-time.</p>
+
+								<p class="mb-4"><strong>Mocklis</strong> is a little different. It generates source code; classes that
+									can be used in your tests. The Mocklis solution consists of:</p>
+
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="card">
+											<div class="card-header">
+												A Source Code Generator
+											</div>
+											<div class="card-body">
+												Built using the powerful Roslyn .net Compiler Platform, Mocklis' code generator can create
+												implementations for interfaces that allow you to add bespoke behaviour and verifications using
+												the Mocklis Library.
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-6 mt-3 mt-sm-0">
+										<div class="card">
+											<div class="card-header">
+												A Library with Mocking Tools
+											</div>
+											<div class="card-body">
+												The Mocklis code library has functionality you can use to make your Mocks interact with the
+												system you're testing in different ways. It can also easily be extended to meet your
+												requirements.
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="text-right mt-5"><a href="#tour" role="button" data-slide="next" class="btn btn-success">
+										Want to know more? Take the tour!
+									</a></div>
+							</div>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="row">
+							<div class="col-md-10 offset-md-1 bg-light rounded p-3">
+								<h4 class="text-success">Picture the scene</h4>
+								<p><em>It's a bright spring morning... </em>We're writing tests for a class called
+									<samp>MySystem</samp>. It uses a service, somewhat surreptitiously named <samp>MyService</samp> to do
+									its work, and
+									the necessary functionality has been surfaced through an interface:</p>
+
+								<pre style="font-size: 0.8rem" class="p-0 mt-0">public interface IMyService
+{
+    int ClientId { get; }
+    string Echo(string text, TimeSpan timeout);
+}</pre>
+
+								<p class="mb-2">The <samp>MySystem</samp> class we want to test has an <samp>IMyService</samp> parameter
+									in its constructor, and we could pass it a real <samp>MyService</samp>
+									instance. There are only two problems.</p>
+								<ol>
+									<li>The MyService has a number of dependencies of its own, so constructing an instance is not trivial.
+									</li>
+									<li class="mt-1">It makes real http calls over the network and depends on an external service to
+										function. Also we want our tests to be lightning-fast, and don't want to take the time to do a
+										round-trip over the network.</li>
+								</ol>
+								<p class="mb-0">The solution of course is to create a mock - our own implementation of the
+									<samp>IMyService</samp> interface - and pass that to the <samp>MySystem</samp> constructor.
+									<em>Mocklis not only helps to do this. It does it in a way that lets us fine-tune the behaviour of the
+										Mock on a case-by-case basis. How? Read on.</em></p>
+
+							</div>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="row">
+							<div class="col-md-10 offset-md-1 bg-light rounded p-3">
+								<p><strong>You</strong> create an empty class implementing the interface(s) you need, and add a
+									<samp>[MocklisClass]</samp> attribute.<br />
+									The <strong class="text-success">Mocklis Code Generator</strong> implements the interfaces explicitly
+									and provides 'Mocks' for adding behaviour.</p>
+								<pre style="font-size: 0.8rem" class="p-0 mt-0">[MocklisClass]
+public class MockService : IMyService, IDisposable
+{
+<span class="text-success">    public MockService()
+    {
+        ClientId = new PropertyMock<int>(this, "MockService", "IMyService", "ClientId", "ClientId");
+        Echo = new FuncMethodMock<(string text, TimeSpan timeout), string>(this, "MockService", "IMyService", "Echo", "Echo");
+        Dispose = new ActionMethodMock(this, "MockService", "IDisposable", "Dispose", "Dispose");
+    }
+
+    public PropertyMock<int> ClientId { get; }
+    int IMyService.ClientId => ClientId.Value;
+    public FuncMethodMock<(string text, TimeSpan timeout), string> Echo { get; }
+    string IMyService.Echo(string text, TimeSpan timeout) => Echo.Call((text, timeout));
+    public ActionMethodMock Dispose { get; }
+    void IDisposable.Dispose() => Dispose.Call();</span>
+}</pre>
+								<p class="mb-0">Notice that every interface member is explicitly implemented and paired up with a public
+									property.</p>
+							</div>
+						</div>
+					</div>
+					<div class="carousel-item">
+
+						<div class="row">
+							<div class="col-md-10 offset-md-1 bg-light rounded p-3">
+								<p class="mb-1">When writing tests you add different types of behaviour to the public properties of your
+									mock class instances.</p>
+								<ul>
+									<li><strong>Control:</strong> Define how your mocks should behave when called (using e.g. Return,
+										Throw, and Func steps)</li>
+									<li><strong>Verify:</strong> Check that your mocks were called with the expected parameters (using
+										e.g. Record steps)</li>
+								</ul>
+								<hr />
+								<pre style="font-size: 0.8rem" class="p-0 mt-0"><span class="text-success">// Create an instance of the mocklis class</span>
+var mockService = new MockService();
+
+<span class="text-success">// Return values or throw exceptions (first read returns 42, subsequent ones throw)</span>
+mockService.ClientId
+    .ReturnOnce(42)  
+    .Throw(() => new InvalidOperationException("connection lost"));
+
+<span class="text-success">// Record data during the test, and "Calculate" responses to function calls</span>
+mockService.Echo
+    .RecordBeforeCall(out var timeouts, p => p.timeout.TotalSeconds)
+    .Func(p => $"You sent '{p.text}'!");
+
+<span class="text-success">// Finally add the mock to the system we want to test</span>
+var systemUnderTest = new MySystem(mockService);</pre>
+								<p class="text-right mb-0">
+									<em>This&nbsp;is&nbsp;of&nbsp;course&nbsp;just&nbsp;scratching&nbsp;the&nbsp;surface.
+										Check&nbsp;the&nbsp;<a href="/docs/index.html"
+											target="_blank">documentation</a>&nbsp;for&nbsp;full&nbsp;details...</em></p>
+							</div>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="row">
+							<div class="col-md-10 offset-md-1 bg-light rounded p-3">
+
+
+
+								<h5 class="text-success">Mocklis helps you write your tests</h4>
+									<p class="mb-2">Mocklis was designed to make the most of <strong>Visual Studio Intellisense:</strong>
+										<ul>
+											<li>Visual Studio suggests compatible (be they built-in, your own, or third-party) steps when you
+												add behaviour to your mocks.</li>
+											<li class="mt-2">Names of parameters are carried over to your mocks and are available when setting
+												up behaviour.</li>
+										</ul>
+									</p>
+									<p><strong>Nothing in the Mocklis Library is internal.</strong> If a helper class was used in a
+										Mocklis built-in step, it's available to you when you write your own.</p>
+
+									<h5 class="text-success mt-5">Mocklis helps you debug your tests</h4>
+										<p class="mb-2"><strong>Mocklis generates source code.</strong> You can set breakpoints and use your
+											existing debugging tools and skills to find out what's going on.</p>
+										<p class="mb-2"><strong>The Mocklis libraries are Source Linked debug builds.</strong> You can step
+											straight into the Mocklis source code from your tests.</p>
+										<p class="mb-0"><strong>Mocklis has built-in logging.</strong> If you want to know how a step is
+											interacted with, add a <samp>.Log()</samp> step just before it,
+											and all interactions will be written to the console. Pass an <samp>ILogContext</samp> to the Log
+											step to send data to other places
+											such as Serilog or the xUnit <samp>ITestOutputHelper</samp>.
+							</div>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="row">
+							<div class="col-md-10 offset-md-1 bg-light rounded p-3">
+
+
+								<h4 class="text-success">And( much)+ more - here's some favourites...</h4>
+
+								<ul>
+									<li>Mocklis lets you mock generic interfaces and interfaces with methods that introduce new type
+										parameters.</li>
+									<li>The inheritance hierarchy is yours to dictate. Mocklis classes can inherit from other classes, and
+										will avoid name clashes and introduce constructors as necessary.</li>
+									<li>Conditional steps allow simple branching allowing your mocks to be more flexible, for instance to
+										log only when certain conditions are met.</li>
+									<li>Mocked events, properties and indexers can be set up to remember any data (or event handlers)
+										written to them.</li>
+									<li>Mocklis' verification classes lets you check a number of conditions on your mocks and assert them
+										in one go, getting a full report of everything that didn't go to plan.</li>
+								</ul>
+
+								<p>Thank you for reading! If you want to give Mocklis a try, find the <a
+										href="https://www.nuget.org/profiles/mocklis" target="_blank">Packages on Nuget,</a> and some more
+									<a href="/docs/index.html" target="_blank">in-depth documentation here.</a> Then there's of course the
+									<a href="https://github.com/mocklis/mocklis" target="_blank">GitHub project</a> where you can get the
+									source code as well as help and fixes for any issues that you might find. This is an alpha release
+									after all...
+
+									<div class="text-right">
+										<h4 class="text-success" />Happy Testing!</h4>
+										<img src="mocksign.png" />
+									</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+		<p><small>Mocklis is released under the <a href="https://licenses.nuget.org/MIT" target="_blank">MIT license</a>,
+				the NuGet logo is <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank">CC BY</a> Microsoft,
+				the book icon is licensed from <a href="https://thenounproject.com/icon/2268926/" target="_blank">The Noun
+					Project</a>,
+				the GitHub Mark is used in accordance with <a href="https://github.com/logos" target="_blank">GitHub Logos and
+					Usage</a>,
+				and the Mocklis logo is <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank">CC BY</a> Esbjörn
+				Redmo.
+			</small></p>
+
+
+
+	</div>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+</body>
+
 </html>
